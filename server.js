@@ -15,7 +15,7 @@ httpServer.listen(PORT || 5000, () => console.log(`Server is running on port ${P
 
 const io = require("socket.io")(httpServer, {
   cors: {
-    origin: "http://localhost:8081",
+    origin: "https://hankatjac.github.io",
     methods: ["GET", "POST"]
   }
 });
