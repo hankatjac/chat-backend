@@ -24,6 +24,20 @@ io.on('connection', socket => {
   const id = socket.handshake.query.id
   socket.join(id)
 
+  if (id == 'Admin') {
+    socket.broadcast.emit('admin-connected')
+  }
+  else {
+    if (socket.adapter.rooms.has('Admin')) {
+      io.to(id).emit('admin-connected')
+    }
+    else {
+      io.to(id).emit('admin-disconnected')
+    }
+    socket.broadcast.to('Admin').emit('user-connected', id)
+  }
+
+
   socket.on('send-message', ({ recipients, text }) => {
     recipients.forEach(recipient => {
       const newRecipients = recipients.filter(r => r !== recipient)
@@ -33,5 +47,14 @@ io.on('connection', socket => {
       })
     })
   })
+
+  socket.on('disconnect', () => {
+
+    if (id == 'Admin') {
+      socket.broadcast.emit('admin-disconnected')
+    }
+    socket.broadcast.to('Admin').emit('user-disconnected', id)
+  })
+
 })
 
