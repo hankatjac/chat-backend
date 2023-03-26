@@ -4,15 +4,14 @@ const app = express();
 
 const httpServer = require("http").createServer(app);
 
+
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to Exel-Tech chat application." });
 });
 
 const PORT = process.env.PORT || 50000;
 
-httpServer.listen(PORT || 50000, () =>
-  console.log(`Server is running on port ${PORT}.`)
-);
+httpServer.listen(PORT || 5000, () => console.log(`Server is running on port ${PORT}.`));
 
 const io = require("socket.io")(httpServer, {
   cors: {
