@@ -16,7 +16,13 @@ httpServer.listen(PORT || 5000, () =>
 
 const io = require("socket.io")(httpServer, {
   cors: {
-    origin: ["https://www.exel-tech.com", "http://localhost:8081"],
+    origin: [
+      "https://www.exel-tech.com",
+      "https://exel-tech.com",
+      "http://www.exel-tech.com",
+      "http://exel-tech.com",
+      "http://localhost:8081",
+    ],
     methods: ["GET", "POST"],
   },
 });
