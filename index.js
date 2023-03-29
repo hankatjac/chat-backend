@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 50000;
 
-httpServer.listen(PORT || 50000, () =>
+httpServer.listen(PORT || 5000, () =>
   console.log(`Server is running on port ${PORT}.`)
 );
 
